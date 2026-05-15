@@ -1,72 +1,105 @@
 <style>
-  .sw { padding: 1rem 0; font-family: var(--font-sans); max-width: 800px; margin: 0 auto; font-size: 18px; }
-  .section-label { font-size: 15px; color: var(--color-text-secondary); margin-bottom: 8px; font-weight: 500; }
+  .sw { padding: 1rem 0; font-family: var(--font-sans); max-width: 1000px; margin: 0 auto; font-size: 18px; }
+  .section-label { font-size: 15px; color: #666; margin-bottom: 8px; font-weight: 600; }
 
   .key-picker { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
-  .kbtn { border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 5px 14px; font-size: 13px; cursor: pointer; background: var(--color-background-secondary); color: var(--color-text-primary); }
-  .kbtn.active { background: #185FA5; color: #fff; border-color: #185FA5; }
+  .kbtn { border: 1px solid #ccc; border-radius: 6px; padding: 5px 14px; font-size: 13px; cursor: pointer; background: #f5f5f5; color: #333; }
+  .kbtn.active { background: #4A90D9; color: #fff; border-color: #4A90D9; }
 
-  /* All 12 notes row */
   .twelve-row { display: flex; gap: 3px; margin-bottom: 6px; }
-  .tn { flex: 1; border-radius: 4px; border: 0.5px solid var(--color-border-tertiary); padding: 6px 2px; text-align: center; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); background: var(--color-background-secondary); }
-  .tn.in-scale { background: #E6F1FB; border-color: #185FA5; color: #0C447C; }
-  .tn.is-root  { background: #185FA5; border-color: #185FA5; color: #fff; }
+  .tn { flex: 1; border-radius: 4px; border: 1px solid #ddd; padding: 6px 2px; text-align: center; font-size: 13px; font-weight: 500; color: #999; background: #f9f9f9; }
+  .tn.in-scale { background: #D6E9F8; border-color: #4A90D9; color: #1A5C99; }
+  .tn.is-root  { background: #4A90D9; border-color: #4A90D9; color: #fff; }
 
-  /* Step row */
   .steps-row { display: flex; align-items: center; gap: 0; margin: 14px 0 6px; }
-  .step-box { border-radius: 6px; border: 0.5px solid var(--color-border-tertiary); padding: 7px 3px; text-align: center; min-width: 0; flex: 1; }
-  .step-box.root { background: #185FA5; border-color: #185FA5; }
-  .step-box.root .sn { color: #fff; } .step-box.root .sl { color: #B5D4F4; }
-  .step-box.in { background: #E6F1FB; border-color: #185FA5; }
-  .step-box.in .sn { color: #0C447C; } .step-box.in .sl { color: #3B8BD4; }
+  .step-box { border-radius: 6px; border: 1px solid #ddd; padding: 7px 3px; text-align: center; min-width: 0; flex: 1; background: #f9f9f9; }
+  .step-box.root { background: #4A90D9; border-color: #4A90D9; }
+  .step-box.root .sn { color: #fff; } .step-box.root .sl { color: #C5DEF5; }
+  .step-box.in { background: #D6E9F8; border-color: #4A90D9; }
+  .step-box.in .sn { color: #1A5C99; } .step-box.in .sl { color: #4A90D9; }
   .sn { font-size: 14px; font-weight: 500; }
   .sl { font-size: 12px; }
-  .gap-box { font-size: 11px; padding: 0 1px; text-align: center; flex-shrink: 0; width: 18px; }
-  .gap-box.whole { color: var(--color-text-secondary); }
-  .gap-box.half  { color: #E24B4A; }
+  .gap-box { font-size: 11px; padding: 0 1px; text-align: center; flex-shrink: 0; width: 18px; color: #aaa; }
+  .gap-box.half { color: #E05555; }
 
-  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 18px 0; }
+  .divider { border: none; border-top: 1px solid #eee; margin: 18px 0; }
 
-  /* Chord stacks */
   .stacks-row { display: flex; gap: 5px; margin-bottom: 8px; }
   .stack-cell { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-  .stack-note { border-radius: 4px; border: 0.5px solid; padding: 3px 1px; font-size: 12px; text-align: center; font-weight: 500; }
-  .sn-fifth     { background: #FAEEDA; border-color: #854F0B; color: #633806; }
-  .sn-mid-maj   { background: #E1F5EE; border-color: #0F6E56; color: #085041; }
-  .sn-mid-min   { background: #EAF3DE; border-color: #3B6D11; color: #27500A; }
-  .sn-mid-dim   { background: #FCEBEB; border-color: #A32D2D; color: #791F1F; }
-  .sn-root-box  { background: #185FA5; border-color: #185FA5; color: #fff; }
+  .stack-note { border-radius: 4px; border: 1px solid; padding: 3px 1px; font-size: 12px; text-align: center; font-weight: 500; }
+  .sn-fifth   { background: #FEF3E2; border-color: #D4860A; color: #7A4D06; }
+  .sn-mid-maj { background: #E2F4EC; border-color: #2E9E6A; color: #1A6644; }
+  .sn-mid-min { background: #EBF4DC; border-color: #5A9020; color: #3A6010; }
+  .sn-mid-dim { background: #FDEAEA; border-color: #CC4444; color: #882222; }
+  .sn-root-box{ background: #4A90D9; border-color: #4A90D9; color: #fff; }
 
-  /* Chord labels */
   .chord-grid { display: flex; gap: 5px; }
-  .chord-cell { flex: 1; border-radius: var(--border-radius-md); border: 0.5px solid; padding: 8px 3px; text-align: center; }
-  .chord-cell.maj { background: #E6F1FB; border-color: #185FA5; }
-  .chord-cell.maj .cc-num { color: #0C447C; } .chord-cell.maj .cc-note { color: #185FA5; } .chord-cell.maj .cc-type { color: #3B8BD4; }
-  .chord-cell.min { background: #E1F5EE; border-color: #0F6E56; }
-  .chord-cell.min .cc-num { color: #085041; } .chord-cell.min .cc-note { color: #0F6E56; } .chord-cell.min .cc-type { color: #1D9E75; }
-  .chord-cell.dim { background: #FCEBEB; border-color: #A32D2D; }
-  .chord-cell.dim .cc-num { color: #791F1F; } .chord-cell.dim .cc-note { color: #A32D2D; } .chord-cell.dim .cc-type { color: #A32D2D; }
+  .chord-cell { flex: 1; border-radius: 6px; border: 1px solid; padding: 8px 3px; text-align: center; }
+  .chord-cell.maj { background: #D6E9F8; border-color: #4A90D9; }
+  .chord-cell.maj .cc-num { color: #1A5C99; } .chord-cell.maj .cc-note { color: #2272BB; } .chord-cell.maj .cc-type { color: #4A90D9; }
+  .chord-cell.min { background: #E2F4EC; border-color: #2E9E6A; }
+  .chord-cell.min .cc-num { color: #1A6644; } .chord-cell.min .cc-note { color: #2E9E6A; } .chord-cell.min .cc-type { color: #3DBB80; }
+  .chord-cell.dim { background: #FDEAEA; border-color: #CC4444; }
+  .chord-cell.dim .cc-num { color: #882222; } .chord-cell.dim .cc-note { color: #CC4444; } .chord-cell.dim .cc-type { color: #CC4444; }
   .cc-num  { font-size: 20px; font-weight: 500; }
   .cc-note { font-size: 13px; margin-top: 2px; }
   .cc-type { font-size: 12px; opacity: 0.85; margin-top: 1px; }
 
-  .hint { font-size: 14px; color: var(--color-text-secondary); margin-top: 6px; }
+  .hint { font-size: 14px; color: #888; margin-top: 6px; }
 
-  @media (prefers-color-scheme: dark) {
-    .tn.in-scale { background: #0C447C; border-color: #378ADD; color: #B5D4F4; }
-    .step-box.in { background: #0C447C; border-color: #378ADD; }
-    .step-box.in .sn { color: #B5D4F4; } .step-box.in .sl { color: #85B7EB; }
-    .chord-cell.maj { background: #0C447C; border-color: #378ADD; }
-    .chord-cell.maj .cc-num { color: #B5D4F4; } .chord-cell.maj .cc-note { color: #85B7EB; } .chord-cell.maj .cc-type { color: #85B7EB; }
-    .chord-cell.min { background: #085041; border-color: #1D9E75; }
-    .chord-cell.min .cc-num { color: #9FE1CB; } .chord-cell.min .cc-note { color: #5DCAA5; } .chord-cell.min .cc-type { color: #5DCAA5; }
-    .chord-cell.dim { background: #791F1F; border-color: #E24B4A; }
-    .chord-cell.dim .cc-num { color: #F7C1C1; } .chord-cell.dim .cc-note { color: #F09595; } .chord-cell.dim .cc-type { color: #F09595; }
-    .sn-fifth   { background: #633806; border-color: #EF9F27; color: #FAC775; }
-    .sn-mid-maj { background: #085041; border-color: #1D9E75; color: #9FE1CB; }
-    .sn-mid-min { background: #27500A; border-color: #639922; color: #C0DD97; }
-    .sn-mid-dim { background: #791F1F; border-color: #E24B4A; color: #F7C1C1; }
+  /* Piano */
+  .piano-outer { margin-top: 8px; border: 1px solid #bbb; border-radius: 4px; background: #888; padding: 1px; }
+  .piano-inner { position: relative; display: flex; height: 180px; gap: 1px; }
+
+  .wk {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 6px;
+    z-index: 1;
   }
+  .wk.in-scale { background: #D6E9F8; border-color: #4A90D9; }
+  .wk.is-root  { background: #4A90D9; border-color: #2272BB; }
+  .wk .kl { font-size: 10px; font-weight: 700; color: #bbb; }
+  .wk.in-scale .kl { color: #1A5C99; }
+  .wk.is-root .kl { color: #fff; }
+
+  .bk {
+    position: absolute;
+    width: 58%;
+    height: 60%;
+    background: #222;
+    border-radius: 0 0 4px 4px;
+    top: 0;
+    left: 71%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    overflow: visible;
+  }
+  .bk.in-scale { background: #2272BB; border-color: #1A5C99; }
+  .bk.is-root  { background: #1A5C99; border-color: #0E3D6E; }
+  .bk .kl {
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    color: #666;
+    white-space: nowrap;
+  }
+  .bk.in-scale .kl { color: #fff; }
+  .bk.is-root .kl  { color: #fff; }
 </style>
 
 <div class="sw">
@@ -82,7 +115,7 @@
 
   <div class="section-label">All 12 notes: highlighted ones land in your scale</div>
   <div class="twelve-row" id="twelve-row"></div>
-  <div class="hint">The scale picks 7 of these 12 by following the pattern: W W H W W W H &nbsp;(W = skip one, H = next door; <span style="color:#E24B4A">red</span> = half step)</div>
+  <div class="hint">The scale picks 7 of these 12 by following the pattern: W W H W W W H &nbsp;(W = skip one, H = next door; <span style="color:#E05555">red</span> = half step)</div>
 
   <div class="steps-row" id="steps-row"></div>
 
@@ -92,6 +125,14 @@
   <div class="stacks-row" id="stacks-row"></div>
   <div class="chord-grid" id="chord-grid"></div>
   <div class="hint" style="margin-top:8px">Blue = major (bright) &nbsp;|&nbsp; Green = minor (darker) &nbsp;|&nbsp; Red = diminished (tense). The scale pattern decides which is which; you don't choose.</div>
+
+  <hr class="divider">
+
+  <div class="section-label">Scale notes on a keyboard</div>
+  <div class="piano-outer">
+    <div class="piano-inner" id="piano"></div>
+  </div>
+  <div class="hint" style="margin-top:8px">Light blue = in the scale &nbsp;|&nbsp; Dark blue = root note &nbsp;|&nbsp; White/black = not in scale</div>
 </div>
 
 <script>
@@ -101,6 +142,17 @@ const CHORD_TYPES = ['maj','min','min','maj','maj','min','dim'];
 const TYPE_LABEL  = { maj: 'major', min: 'minor', dim: 'dim' };
 const INTERVALS   = { maj: [0,4,7], min: [0,3,7], dim: [0,3,6] };
 const GAP_LABELS  = ['W','W','H','W','W','W','H'];
+
+const OCTAVE = [
+  { note: 'C', hasBlack: true,  black: 'C#' },
+  { note: 'D', hasBlack: true,  black: 'D#' },
+  { note: 'E', hasBlack: false, black: null  },
+  { note: 'F', hasBlack: true,  black: 'F#' },
+  { note: 'G', hasBlack: true,  black: 'G#' },
+  { note: 'A', hasBlack: true,  black: 'A#' },
+  { note: 'B', hasBlack: false, black: null  },
+];
+const KEYS = [...OCTAVE, ...OCTAVE];
 
 function buildScale(root) {
   const start = ALL.indexOf(root);
@@ -115,11 +167,41 @@ function chordNotes(root, type) {
   return INTERVALS[type].map(s => ALL[(ri+s)%12]);
 }
 
+function renderPiano(scale, root) {
+  const scaleSet = new Set(scale);
+  const piano = document.getElementById('piano');
+  piano.innerHTML = '';
+
+  KEYS.forEach(({ note, hasBlack, black }) => {
+    const wk = document.createElement('div');
+    const wIsRoot = note === root;
+    const wInScale = scaleSet.has(note);
+    wk.className = 'wk' + (wIsRoot ? ' is-root' : wInScale ? ' in-scale' : '');
+    const wLabel = document.createElement('span');
+    wLabel.className = 'kl';
+    wLabel.textContent = note;
+    wk.appendChild(wLabel);
+
+    if (hasBlack && black) {
+      const bk = document.createElement('div');
+      const bIsRoot = black === root;
+      const bInScale = scaleSet.has(black);
+      bk.className = 'bk' + (bIsRoot ? ' is-root' : bInScale ? ' in-scale' : '');
+      const bLabel = document.createElement('span');
+      bLabel.className = 'kl';
+      bLabel.textContent = black;
+      bk.appendChild(bLabel);
+      wk.appendChild(bk);
+    }
+
+    piano.appendChild(wk);
+  });
+}
+
 function render(key) {
   const scale = buildScale(key);
   const scaleSet = new Set(scale);
 
-  // 12-note row
   const twelveRow = document.getElementById('twelve-row');
   twelveRow.innerHTML = '';
   const rootIdx = ALL.indexOf(key);
@@ -133,7 +215,6 @@ function render(key) {
     twelveRow.appendChild(div);
   }
 
-  // Scale steps row
   const stepsRow = document.getElementById('steps-row');
   stepsRow.innerHTML = '';
   scale.forEach((note, i) => {
@@ -151,7 +232,6 @@ function render(key) {
   rootRepeat.innerHTML = `<div class="sn">${scale[0]}</div><div class="sl">1</div>`;
   stepsRow.appendChild(rootRepeat);
 
-  // Chord stacks
   const stacksRow = document.getElementById('stacks-row');
   stacksRow.innerHTML = '';
   scale.forEach((note, i) => {
@@ -168,7 +248,6 @@ function render(key) {
     stacksRow.appendChild(cell);
   });
 
-  // Chord labels
   const grid = document.getElementById('chord-grid');
   grid.innerHTML = '';
   scale.forEach((note, i) => {
@@ -178,6 +257,8 @@ function render(key) {
     cell.innerHTML = `<div class="cc-num">${i+1}</div><div class="cc-note">${note}</div><div class="cc-type">${TYPE_LABEL[type]}</div>`;
     grid.appendChild(cell);
   });
+
+  renderPiano(scale, key);
 }
 
 document.getElementById('key-picker').addEventListener('click', e => {
