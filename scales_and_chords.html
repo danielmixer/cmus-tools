@@ -1,7 +1,6 @@
-
 <style>
-  .sw { padding: 1rem 0; font-family: var(--font-sans); }
-  .section-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; font-weight: 500; }
+  .sw { padding: 1rem 0; font-family: var(--font-sans); max-width: 800px; margin: 0 auto; font-size: 16px; }
+  .section-label { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 8px; font-weight: 500; }
 
   .key-picker { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
   .kbtn { border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 5px 14px; font-size: 13px; cursor: pointer; background: var(--color-background-secondary); color: var(--color-text-primary); }
@@ -9,7 +8,7 @@
 
   /* All 12 notes row */
   .twelve-row { display: flex; gap: 3px; margin-bottom: 6px; }
-  .tn { flex: 1; border-radius: 4px; border: 0.5px solid var(--color-border-tertiary); padding: 6px 2px; text-align: center; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); background: var(--color-background-secondary); }
+  .tn { flex: 1; border-radius: 4px; border: 0.5px solid var(--color-border-tertiary); padding: 6px 2px; text-align: center; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); background: var(--color-background-secondary); }
   .tn.in-scale { background: #E6F1FB; border-color: #185FA5; color: #0C447C; }
   .tn.is-root  { background: #185FA5; border-color: #185FA5; color: #fff; }
 
@@ -20,9 +19,9 @@
   .step-box.root .sn { color: #fff; } .step-box.root .sl { color: #B5D4F4; }
   .step-box.in { background: #E6F1FB; border-color: #185FA5; }
   .step-box.in .sn { color: #0C447C; } .step-box.in .sl { color: #3B8BD4; }
-  .sn { font-size: 12px; font-weight: 500; }
-  .sl { font-size: 10px; }
-  .gap-box { font-size: 9px; padding: 0 1px; text-align: center; flex-shrink: 0; width: 18px; }
+  .sn { font-size: 14px; font-weight: 500; }
+  .sl { font-size: 12px; }
+  .gap-box { font-size: 11px; padding: 0 1px; text-align: center; flex-shrink: 0; width: 18px; }
   .gap-box.whole { color: var(--color-text-secondary); }
   .gap-box.half  { color: #E24B4A; }
 
@@ -31,7 +30,7 @@
   /* Chord stacks */
   .stacks-row { display: flex; gap: 5px; margin-bottom: 8px; }
   .stack-cell { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-  .stack-note { border-radius: 4px; border: 0.5px solid; padding: 3px 1px; font-size: 10px; text-align: center; font-weight: 500; }
+  .stack-note { border-radius: 4px; border: 0.5px solid; padding: 3px 1px; font-size: 12px; text-align: center; font-weight: 500; }
   .sn-fifth     { background: #FAEEDA; border-color: #854F0B; color: #633806; }
   .sn-mid-maj   { background: #E1F5EE; border-color: #0F6E56; color: #085041; }
   .sn-mid-min   { background: #EAF3DE; border-color: #3B6D11; color: #27500A; }
@@ -47,11 +46,11 @@
   .chord-cell.min .cc-num { color: #085041; } .chord-cell.min .cc-note { color: #0F6E56; } .chord-cell.min .cc-type { color: #1D9E75; }
   .chord-cell.dim { background: #FCEBEB; border-color: #A32D2D; }
   .chord-cell.dim .cc-num { color: #791F1F; } .chord-cell.dim .cc-note { color: #A32D2D; } .chord-cell.dim .cc-type { color: #A32D2D; }
-  .cc-num  { font-size: 18px; font-weight: 500; }
-  .cc-note { font-size: 11px; margin-top: 2px; }
-  .cc-type { font-size: 10px; opacity: 0.85; margin-top: 1px; }
+  .cc-num  { font-size: 20px; font-weight: 500; }
+  .cc-note { font-size: 13px; margin-top: 2px; }
+  .cc-type { font-size: 12px; opacity: 0.85; margin-top: 1px; }
 
-  .hint { font-size: 11px; color: var(--color-text-secondary); margin-top: 6px; }
+  .hint { font-size: 13px; color: var(--color-text-secondary); margin-top: 6px; }
 
   @media (prefers-color-scheme: dark) {
     .tn.in-scale { background: #0C447C; border-color: #378ADD; color: #B5D4F4; }
@@ -61,6 +60,136 @@
     .chord-cell.maj .cc-num { color: #B5D4F4; } .chord-cell.maj .cc-note { color: #85B7EB; } .chord-cell.maj .cc-type { color: #85B7EB; }
     .chord-cell.min { background: #085041; border-color: #1D9E75; }
     .chord-cell.min .cc-num { color: #9FE1CB; } .chord-cell.min .cc-note { color: #5DCAA5; } .chord-cell.min .cc-type { color: #5DCAA5; }
+    .chord-cell.dim { background: #791F1F; border-color: #E24B4A; }
+    .chord-cell.dim .cc-num { color: #F7C1C1; } .chord-cell.dim .cc-note { color: #F09595; } .chord-cell.dim .cc-type { color: #F09595; }
+    .sn-fifth   { background: #633806; border-color: #EF9F27; color: #FAC775; }
+    .sn-mid-maj { background: #085041; border-color: #1D9E75; color: #9FE1CB; }
+    .sn-mid-min { background: #27500A; border-color: #639922; color: #C0DD97; }
+    .sn-mid-dim { background: #791F1F; border-color: #E24B4A; color: #F7C1C1; }
+  }
+</style>
+
+<div class="sw">
+  <div class="section-label">Choose a starting note (your root)</div>
+  <div class="key-picker" id="key-picker">
+    <button class="kbtn active" data-key="C">C</button>
+    <button class="kbtn" data-key="D">D</button>
+    <button class="kbtn" data-key="E">E</button>
+    <button class="kbtn" data-key="F">F</button>
+    <button class="kbtn" data-key="G">G</button>
+    <button class="kbtn" data-key="A">A</button>
+  </div>
+
+  <div class="section-label">All 12 notes: highlighted ones land in your scale</div>
+  <div class="twelve-row" id="twelve-row"></div>
+  <div class="hint">The scale picks 7 of these 12 by following the pattern: W W H W W W H &nbsp;(W = skip one, H = next door; <span style="color:#E24B4A">red</span> = half step)</div>
+
+  <div class="steps-row" id="steps-row"></div>
+
+  <hr class="divider">
+
+  <div class="section-label">Chords: each built by stacking every other scale tone (1-3-5, 2-4-6, etc.)</div>
+  <div class="stacks-row" id="stacks-row"></div>
+  <div class="chord-grid" id="chord-grid"></div>
+  <div class="hint" style="margin-top:8px">Blue = major (bright) &nbsp;|&nbsp; Green = minor (darker) &nbsp;|&nbsp; Red = diminished (tense). The scale pattern decides which is which; you don't choose.</div>
+</div>
+
+<script>
+const ALL = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const MAJOR_STEPS = [2,2,1,2,2,2,1];
+const CHORD_TYPES = ['maj','min','min','maj','maj','min','dim'];
+const TYPE_LABEL  = { maj: 'major', min: 'minor', dim: 'dim' };
+const INTERVALS   = { maj: [0,4,7], min: [0,3,7], dim: [0,3,6] };
+const GAP_LABELS  = ['W','W','H','W','W','W','H'];
+
+function buildScale(root) {
+  const start = ALL.indexOf(root);
+  let idx = start;
+  const scale = [ALL[idx]];
+  for (const s of MAJOR_STEPS.slice(0,-1)) { idx=(idx+s)%12; scale.push(ALL[idx]); }
+  return scale;
+}
+
+function chordNotes(root, type) {
+  const ri = ALL.indexOf(root);
+  return INTERVALS[type].map(s => ALL[(ri+s)%12]);
+}
+
+function render(key) {
+  const scale = buildScale(key);
+  const scaleSet = new Set(scale);
+
+  // 12-note row
+  const twelveRow = document.getElementById('twelve-row');
+  twelveRow.innerHTML = '';
+  const rootIdx = ALL.indexOf(key);
+  for (let i = 0; i < 12; i++) {
+    const note = ALL[(rootIdx + i) % 12];
+    const isRoot = i === 0;
+    const inScale = scaleSet.has(note);
+    const div = document.createElement('div');
+    div.className = 'tn' + (isRoot ? ' is-root' : inScale ? ' in-scale' : '');
+    div.textContent = note;
+    twelveRow.appendChild(div);
+  }
+
+  // Scale steps row
+  const stepsRow = document.getElementById('steps-row');
+  stepsRow.innerHTML = '';
+  scale.forEach((note, i) => {
+    const box = document.createElement('div');
+    box.className = 'step-box ' + (i === 0 ? 'root' : 'in');
+    box.innerHTML = `<div class="sn">${note}</div><div class="sl">${i+1}</div>`;
+    stepsRow.appendChild(box);
+    const gap = document.createElement('div');
+    gap.className = 'gap-box ' + (GAP_LABELS[i] === 'H' ? 'half' : 'whole');
+    gap.textContent = GAP_LABELS[i];
+    stepsRow.appendChild(gap);
+  });
+  const rootRepeat = document.createElement('div');
+  rootRepeat.className = 'step-box root';
+  rootRepeat.innerHTML = `<div class="sn">${scale[0]}</div><div class="sl">1</div>`;
+  stepsRow.appendChild(rootRepeat);
+
+  // Chord stacks
+  const stacksRow = document.getElementById('stacks-row');
+  stacksRow.innerHTML = '';
+  scale.forEach((note, i) => {
+    const type = CHORD_TYPES[i];
+    const notes = chordNotes(note, type);
+    const midClass = type === 'maj' ? 'sn-mid-maj' : type === 'min' ? 'sn-mid-min' : 'sn-mid-dim';
+    const cell = document.createElement('div');
+    cell.className = 'stack-cell';
+    cell.innerHTML = `
+      <div class="stack-note sn-fifth">${notes[2]}</div>
+      <div class="stack-note ${midClass}">${notes[1]}</div>
+      <div class="stack-note sn-root-box">${notes[0]}</div>
+    `;
+    stacksRow.appendChild(cell);
+  });
+
+  // Chord labels
+  const grid = document.getElementById('chord-grid');
+  grid.innerHTML = '';
+  scale.forEach((note, i) => {
+    const type = CHORD_TYPES[i];
+    const cell = document.createElement('div');
+    cell.className = `chord-cell ${type}`;
+    cell.innerHTML = `<div class="cc-num">${i+1}</div><div class="cc-note">${note}</div><div class="cc-type">${TYPE_LABEL[type]}</div>`;
+    grid.appendChild(cell);
+  });
+}
+
+document.getElementById('key-picker').addEventListener('click', e => {
+  const btn = e.target.closest('.kbtn');
+  if (!btn) return;
+  document.querySelectorAll('.kbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(btn.dataset.key);
+});
+
+render('C');
+</script>    .chord-cell.min .cc-num { color: #9FE1CB; } .chord-cell.min .cc-note { color: #5DCAA5; } .chord-cell.min .cc-type { color: #5DCAA5; }
     .chord-cell.dim { background: #791F1F; border-color: #E24B4A; }
     .chord-cell.dim .cc-num { color: #F7C1C1; } .chord-cell.dim .cc-note { color: #F09595; } .chord-cell.dim .cc-type { color: #F09595; }
     .sn-fifth   { background: #633806; border-color: #EF9F27; color: #FAC775; }
